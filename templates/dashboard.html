@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<title>{{t}}</title>
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/style.css')}}" >
+	</head>
+<body>
+	<h1>{{h}}</h1>
+	<hr>
+	<h3>Transaction List</h3>
+	<p>{{data['first-name']}} {{data['last-name'] }}</p>
+	<p>Current balance : {{data['cur_balance'] }}</p>
+	{% if trans[0] %}
+	<table>
+	    <tr id="row">
+	    	<td class="name">Time</td>
+	    	<td class="name">Type</td>
+	    	<td class="desc">Amount</td>
+	    	<td class="date">Balance</td>
+	    	<td class="pr">Image</td>
+	    </tr>
+		{% for tran in trans %}
+		<tr class="datas">
+			<td class="name">{{ tran["created_time"] }}</td>
+			<td class="name">{{ tran["type"] }}</td>
+			<td class="desc">{{ tran["amount"] }}</td>
+			<td class="date">{{ tran["cur_balance"] }}</td>
+			<td class="pr">{{ tran["image"] }}</td>
+		</tr>
+		{% endfor %}
+	{% else %}
+		<h4>No Result Found !!</h4>
+	{% endif %}
+	</table>
+<br/>
+<a href="/">Return to Home Page</a>
+</body>
+</html>

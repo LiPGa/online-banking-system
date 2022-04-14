@@ -1,0 +1,117 @@
+<html>
+	<head>
+		<title>{{t}}</title>
+		<!-- href="/static/assets/style.css"-->
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/style.css')}}" >
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/emoji.css')}}" >
+		<script src="{{ url_for('static',filename='assets/twemoji.min.js')}}"></script>  
+		<script src="{{ url_for('static',filename='assets/emoji.js')}}"></script>
+	</head>
+<body>
+	<h1>{{ h }}</h1>
+	<ul>
+		<li><a href="/" class="{{ a1 }}">Home</a></li>
+		<li><a href="/audit" class="{{ a3 }}">Audit</a></li>
+	</ul>
+	<hr>
+	{% if users[0] %}
+	<b><big>Accounts :</big></b>
+	<table>
+	    <tr id="row">
+	    	<th class="date">Account ID</th>
+	    	<th class="date">First Name</th>
+	    	<th class="date">Last Name</th>
+	    	<th class="date">Middle Initial</th>
+	    	<th class="date">Balance</th>
+	    </tr>
+	{% for user in users %}
+		<tr class="datas">
+			<td class="date">{{ user["account_id"] }}</td>
+			<td class="firstname">{{ user["first-name"] }}</td>
+			<td class="lastname">{{ user["last-name"] }}</td>
+			<td class="taxid">{{ user["middle-initial"] }}</td>
+			<td class="date">{{ user["cur_balance"] }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+	{% else %}
+		<h4>No Accounts in the List !!</h4>
+	{% endif %}
+	<br />
+	<form action="/dashboard" method="GET">
+		<table class="none">
+			<tr>
+				<td><b><big><label>Dashboard: </label></big></b></td>
+			</tr>
+			<tr>
+			<td><input type="text" name="account_id" placeholder="Account ID" /></td>
+			<td><button type="submit"> check </button></td>
+			</tr>
+		</table>
+	</form>
+	<hr/>
+	<form action="/new_account" method="POST">
+	<table class="none">
+		<tr>
+			<td><b><big><label>New account: </label></big></b></td>
+		</tr>
+		<tr>
+		<td><input type="text" name="firstname" placeholder="First name" /></td>
+		<td><input type="text" name="lastname" placeholder="Last name" /></td>
+		<td><input type="text" name="middlename" placeholder="Middle Initial" /></td>
+		<td><input type="text" name="taxid" placeholder="Tax ID" /></td>
+		<td><input type="text" name="date" placeholder="Date YYYY-MM-DD" /></td>
+		<td><input type="text" name="contactinfo" placeholder="Contact Info" /></td>
+		<!-- <td><textarea name="desc" rows="1" cols="30" placeholder="Enter Description here..." required></textarea></td> -->
+		<!-- <td><input type="text" name="date" placeholder="Date" /></td> -->
+		<!-- <td><input type="text" name="pr" placeholder="Priority" /></td> -->
+		<td><button type="submit"> Create </button></td>
+		</tr>
+	</table>
+	</form>
+
+
+	<form action="/deposit" method="POST">
+	<table class="none">
+		<tr>
+			<td><b><big><label>Deposit: </label></big></b></td>
+		</tr>
+		<tr>
+		<td><input type="text" name="account_id" placeholder="Account ID" /></td>
+		<td><input type="text" name="amount" placeholder="Amount" /></td>
+		<td><button type="submit"> Deposit </button></td>
+		</tr>
+	</table>
+	</form>
+
+	<form action="/withdraw" method="POST">
+	<table class="none">
+		<tr>
+			<td><b><big><label>Withdraw: </label></big></b></td>
+		</tr>
+		<tr>
+		<td><input type="text" name="account_id" placeholder="Account ID" /></td>
+		<td><input type="text" name="amount" placeholder="Amount" /></td>
+		<td><button type="submit"> Withdraw </button></td>
+		</tr>
+	</table>
+	</form>
+
+	<form action="/transfer" method="POST">
+		<table class="none">
+			<tr>
+				<td><b><big><label>Transfer: </label></big></b></td>
+			</tr>
+			<tr>
+			<td>From:  <input type="text" name="src_id" placeholder="From Account ID" /></td>
+			<td>To:  <input type="text" name="target_id" placeholder="To Account ID" /></td>
+			<td><input type="text" name="amount" placeholder="Amount" /></td>
+			<td><button type="submit"> Transfer </button></td>
+			</tr>
+		</table>
+	</form>
+	<script>
+
+	</script>
+</body>
+</html>

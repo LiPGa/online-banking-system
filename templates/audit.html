@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<title>{{t}}</title>
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/style.css')}}" >
+	</head>
+<body>
+	<h1>{{h}}</h1>
+	<ul>
+		<li><a href="/" class="{{ a1 }}">Home</a></li>
+		<li><a href="/audit" class="{{ a2 }}">Audit</a></li>
+	</ul>
+	<hr>
+	<h2>Audit Results</h2>
+	{% for i in range(len) %}
+	<h3>{{users[i]['first-name']}} {{users[i]['middle-initial'] }} {{users[i]['last-name'] }}</h3>
+	{% if trans[i][0] %}
+	<table>
+	    <tr id="row">
+	    	<td class="name">Time</td>
+	    	<td class="name">Type</td>
+	    	<td class="desc">Amount</td>
+	    	<td class="date">Balance</td>
+	    	<td class="pr">Image</td>
+	    </tr>
+		{% for tran in trans[i] %}
+		<tr class="datas">
+			<td class="name">{{ tran["created_time"] }}</td>
+			<td class="name">{{ tran["type"] }}</td>
+			<td class="desc">{{ tran["amount"] }}</td>
+			<td class="date">{{ tran["cur_balance"] }}</td>
+			<td class="pr">{{ tran["image"] }}</td>
+		</tr>
+		{% endfor %}
+	{% else %}
+		<h4>No Transaction Found !!</h4>
+	{% endif %}
+	</table>
+	{% endfor %}
+	<br />
+	<a href="/">Return to Home Page</a>
+</body>
+</html>
