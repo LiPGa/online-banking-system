@@ -7,7 +7,7 @@ Online Banking System with Python Flask and Azure CosmosDB API for MongoDB
 3. Auditing
 4. Dashboard
 
-#### Instructions
+### Instructions
 1. Create CosmosDB with API for MongoDB from Azure on https://azure.microsoft.com/en-us/free/
 2. Copy the Primary Connection String (PRIMARY CONNECTION STRING) and paste to `app.py`
 3. In the cloud shell run
